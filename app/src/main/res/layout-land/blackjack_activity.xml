@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green">
+
+    <Button
+        android:text="hit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hit"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="226dp"
+        android:layout_marginEnd="226dp"
+        android:layout_marginTop="64dp" />
+
+    <Button
+        android:text="stand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stand"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/hit"
+        android:layout_alignStart="@+id/hit" />
+
+    <TextView
+        android:text="score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player_score"
+        android:layout_marginRight="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/player"
+        android:layout_alignEnd="@+id/player"
+        android:layout_marginBottom="22dp" />
+
+    <TextView
+        android:text="Player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player"
+        android:textStyle="normal|bold"
+        android:textSize="18sp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginStart="54dp"
+        android:layout_above="@+id/player_score"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp" />
+
+    <TextView
+        android:text="score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/score"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_below="@+id/player"
+        android:layout_alignLeft="@+id/card_1"
+        android:layout_alignStart="@+id/card_1" />
+
+    <TextView
+        android:text="Dealer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dealer"
+        android:textStyle="normal|bold"
+        android:textSize="18sp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_alignTop="@+id/player"
+        android:layout_alignLeft="@+id/card_1"
+        android:layout_alignStart="@+id/card_1"
+        android:layout_marginTop="7dp" />
+
+    <TextView
+        android:text="money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/money"
+        android:layout_marginRight="19dp"
+        android:layout_marginEnd="19dp"
+        android:layout_above="@+id/dealer"
+        android:layout_alignRight="@+id/stand"
+        android:layout_alignEnd="@+id/stand" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/back"
+        android:id="@+id/card_3"
+        android:scaleType="fitCenter"
+        android:layout_above="@+id/money"
+        android:layout_alignLeft="@+id/player_score"
+        android:layout_alignStart="@+id/player_score"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="8dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/back"
+        android:id="@+id/card_4"
+        android:scaleType="fitCenter"
+        android:layout_above="@+id/stand"
+        android:layout_alignRight="@+id/card_3"
+        android:layout_alignEnd="@+id/card_3"
+        android:layout_marginRight="33dp"
+        android:layout_marginEnd="33dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/back"
+        android:id="@+id/card_1"
+        android:layout_marginRight="34dp"
+        android:layout_marginEnd="34dp"
+        android:scaleType="fitCenter"
+        android:layout_alignTop="@+id/card_3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/back"
+        android:id="@+id/card_2"
+        android:scaleType="fitCenter"
+        android:layout_above="@+id/stand"
+        android:layout_alignRight="@+id/score"
+        android:layout_alignEnd="@+id/score" />
+
+</RelativeLayout>
