@@ -135,14 +135,4 @@
         android:layout_alignRight="@+id/score"
         android:layout_alignEnd="@+id/score" />
 
-    <Button
-        android:text="Play Again"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/hit"
-        android:layout_alignEnd="@+id/hit"
-        android:layout_marginTop="16dp"
-        android:id="@+id/play_again" />
-
 </RelativeLayout>
