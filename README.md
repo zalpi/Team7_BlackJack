@@ -1,4 +1,4 @@
-# Team7_BlackJack
+# Team7_BlackJack: Zachary Pigott & Briana Schmidt
 CSCI 4020 Team 7's blackjack application.
 
 This repository seeks to accomplish the following:
