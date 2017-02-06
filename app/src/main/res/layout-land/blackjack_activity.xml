@@ -12,7 +12,9 @@
         android:id="@+id/stand_button"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/hit_button"
-        android:layout_alignStart="@+id/hit_button" />
+        android:layout_alignStart="@+id/hit_button"
+        android:layout_alignRight="@+id/hit_button"
+        android:layout_alignEnd="@+id/hit_button" />
 
     <TextView
         android:text="score"
@@ -121,8 +123,7 @@
         android:scaleType="fitCenter"
         android:layout_above="@+id/stand_button"
         android:layout_alignRight="@+id/score"
-        android:layout_alignEnd="@+id/score"
-        android:contentDescription="" />
+        android:layout_alignEnd="@+id/score" />
 
     <Button
         android:text="hit"
