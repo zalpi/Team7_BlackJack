@@ -25,8 +25,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int dealerScoreInt;
     private int playerMoneyInt;
     private TextView playerScore, playerMoney;
-    private ImageView dealerCardOne, dealerCardTwo;
-    private ImageView playerCardOne, playerCardTwo;
+    private ImageView dealerCardOne, dealerCard_two;
+    private ImageView playerCardOne, playerCard_two;
     private boolean playerStand = false, dealerStand = false;
 
     @Override
@@ -39,9 +39,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         //card declarations.
         dealerCardOne = (ImageView) findViewById(R.id.dealer_card1);
-        dealerCardTwo = (ImageView) findViewById(R.id.dealer_card2);
+        dealerCard_two = (ImageView) findViewById(R.id.dealer_card2);
         playerCardOne = (ImageView) findViewById(R.id.player_card1);
-        playerCardTwo = (ImageView) findViewById(R.id.player_card2);
+        playerCard_two = (ImageView) findViewById(R.id.player_card2);
 
         //player's score is the only thing that updates on screen.
         playerScore = (TextView) findViewById(R.id.player_score);
@@ -67,7 +67,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             setDeck();
         }
 
-        public String drawCard(String card) {
+        private String drawCard(String card) {
             Random r = new Random();
             int value = 0;
             int i = r.nextInt((52 - 1)); //I mean the array is set up for 0-51 so dunno
@@ -82,82 +82,83 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             return card;
         }
 
-        public void resetDeck() {
+        private void resetDeck() {
             setDeck();
         }
+
         private int getValue(String card) {
             int v = 0;
             switch(card) {
-                case "cTwo":
-                case "dTwo":
-                case "hTwo":
-                case "sTwo":
+                case "c_two":
+                case "d_two":
+                case "h_two":
+                case "s_two":
                     v = 2;
                     break;
-                case "cThree":
-                case "dThree":
-                case "hThree":
-                case "sThree":
+                case "c_three":
+                case "d_three":
+                case "h_three":
+                case "s_three":
                     v = 3;
                     break;
-                case "cFour":
-                case "dFour":
-                case "hFour":
-                case "sFour":
+                case "c_four":
+                case "d_four":
+                case "h_four":
+                case "s_four":
                     v = 4;
                     break;
-                case "cFive":
-                case "dFive":
-                case "hFive":
-                case "sFive":
+                case "c_five":
+                case "d_five":
+                case "h_five":
+                case "s_five":
                     v = 5;
                     break;
-                case "cSix":
-                case "dSix":
-                case "hSix":
-                case "sSix":
+                case "c_six":
+                case "d_six":
+                case "h_six":
+                case "s_six":
                     v = 6;
                     break;
-                case "cSeven":
-                case "dSeven":
-                case "hSeven":
-                case "sSeven":
+                case "c_seven":
+                case "d_seven":
+                case "h_seven":
+                case "s_seven":
                     v = 7;
                     break;
-                case "cEight":
-                case "dEight":
-                case "hEight":
-                case "sEight":
+                case "c_eight":
+                case "d_eight":
+                case "h_eight":
+                case "s_eight":
                     v = 8;
                     break;
-                case "cNine":
-                case "dNine":
-                case "hNine":
-                case "sNine":
+                case "c_nine":
+                case "d_nine":
+                case "h_nine":
+                case "s_nine":
                     v = 9;
                     break;
-                case "cTen":
-                case "dTen":
-                case "hTen":
-                case "sTen":
-                case "cJack":
-                case "dJack":
-                case "hJack":
-                case "sJack":
-                case "cQueen":
-                case "dQueen":
-                case "hQueen":
-                case "sQueen":
-                case "cKing":
-                case "dKing":
-                case "hKing":
-                case "sKing":
+                case "c_ten":
+                case "d_ten":
+                case "h_ten":
+                case "s_ten":
+                case "c_jack":
+                case "d_jack":
+                case "h_jack":
+                case "s_jack":
+                case "c_queen":
+                case "d_queen":
+                case "h_queen":
+                case "s_queen":
+                case "c_king":
+                case "d_king":
+                case "h_king":
+                case "s_king":
                     v = 10;
                     break;
-                case "cAce":
-                case "dAce":
-                case "hAce":
-                case "sAce":
+                case "c_ace":
+                case "d_ace":
+                case "h_ace":
+                case "s_ace":
                     v = 11;
                     break;
             }
@@ -165,14 +166,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             return v;
         }
         private void setDeck() {
-            String[] deckOfCards = {"cTwo", "cThree", "cFour", "cFive", "cSix", "cSeven", "cEight",
-            /*Clubs*/               "cNine", "cTen", "cJack", "cQueen", "cKing", "cAce",
-                                    "dTwo", "dThree", "dFour", "dFive", "dSix", "dSeven", "dEight",
-            /*Diamonds*/            "dNine", "dTen", "dJack", "dQueen", "dKing", "dAce",
-                                    "hTwo", "hThree", "hFour", "hFive", "hSix", "hSeven", "hEight",
-            /*Hearts*/              "hNine", "hTen", "hJack", "hQueen", "hKing", "hAce",
-                                    "sTwo", "sThree", "sFour", "sFive", "sSix", "sSeven", "sEight",
-            /*Spades*/              "sNine", "sTen", "sJack", "sQueen", "sKing", "sAce"};
+            String[] deckOfCards = {"c_two", "c_three", "c_four", "c_five", "c_six", "c_seven", "c_eight",
+            /*Clubs*/               "c_nine", "c_ten", "c_jack", "c_queen", "c_king", "c_ace",
+                                    "d_two", "d_three", "d_four", "d_five", "d_six", "d_seven", "d_eight",
+            /*Diamonds*/            "d_nine", "d_ten", "d_jack", "d_queen", "d_king", "d_ace",
+                                    "h_two", "h_three", "h_four", "h_five", "h_six", "h_seven", "h_eight",
+            /*Hearts*/              "h_nine", "h_ten", "h_jack", "h_queen", "h_king", "h_ace",
+                                    "s_two", "s_three", "s_four", "s_five", "s_six", "s_seven", "s_eight",
+            /*Spades*/              "s_nine", "s_ten", "s_jack", "s_queen", "s_king", "s_ace"};
             //  Clubs: 0-12 | Diamonds: 13-25 | Hearts: 26-38 | Spades: 39 - 51
         }
     }
