@@ -32,6 +32,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private boolean playerStand = false, dealerStand = false, justStarted = true;
     private Deck deck;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,26 +42,39 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Button b = (Button) findViewById(R.id.hit_button);
         b.setOnClickListener(this);  //game doesn't start until player clicks hit
+
+
     }
 
     @Override
     public void onClick(View view) {
+        Button b = (Button) findViewById(R.id.stand_button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!playerStand) {
+                    dealerScore.setText(dealerScoreInt + "");
+                    while(dealerScoreInt < 17) {
+                        dealerTakesAHit();
+                    }
+                    playerStand = true;
+                    whoWinsThePot(); //TODO: Implement a method to determine win/lose/tie.
+                }
+            }
+        });
         if(justStarted) {
             playerTakesAHit();
             playerTakesAHit();
             dealerTakesAHit();
             dealerTakesAHit();
             playerScore.setText(playerScoreInt + "");
-        } else if (!playerStand) {  //skips player if he has already stood.
+        } else if (!playerStand) {  //has player already stood? If so, hit does nothing.
             if (!bust(playerScoreInt)){ //checks if the player has busted already or not.
                 playerTakesAHit();
                 playerScore.setText(playerScoreInt + "");
             } else {
-                theHouseAlwaysWins(); //TODO: Implement this method.
+                whoWinsThePot();
             }
-        } else {
-            dealerScore.setText(dealerScoreInt + "");
-            dealerTakesAHit();
         }
     }
 
@@ -87,12 +101,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private Boolean bust(int score) {
-    if(score <= 21) {
-        return false;
-    } else {
-        return true;
+        if(score <= 21) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
+    private void whoWinsThePot() {
+        //TODO: A dialog box that says if won/lost/tied with an option to close said dialog. Shuffles deck, resets scores, resets cards, updates money field.
     }
 
     private void startGame() {
