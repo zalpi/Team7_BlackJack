@@ -26,7 +26,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int playerScoreInt; //anything over 21 will be considered a bust
     private int dealerScoreInt;
     private int playerMoneyInt;
-    private TextView playerScore, playerMoney;
+    private TextView playerScore, playerMoney, dealerScore;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
     private boolean playerStand = false, dealerStand = false, justStarted = true;
@@ -51,14 +51,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             dealerTakesAHit();
             dealerTakesAHit();
             playerScore.setText(playerScoreInt + "");
-        } else {
-            playerTakesAHit();
-            playerScore.setText(playerScoreInt + "");
-            if(bust(playerScoreInt)) {
-             while(!bust(dealerScoreInt)) {
-                 dealerTakesAHit();
-             }
+        } else if (!playerStand) {  //skips player if he has already stood.
+            if (!bust(playerScoreInt)){ //checks if the player has busted already or not.
+                playerTakesAHit();
+                playerScore.setText(playerScoreInt + "");
+            } else {
+                theHouseAlwaysWins(); //TODO: Implement this method.
             }
+        } else {
+            dealerScore.setText(dealerScoreInt + "");
             dealerTakesAHit();
         }
     }
@@ -107,6 +108,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         //player's score is the only thing that updates on screen.
         playerScore = (TextView) findViewById(R.id.player_score);
+        dealerScore = (TextView) findViewById(R.id.score);
 
         //making sure scores start off at 0.
         playerScoreInt = dealerScoreInt = 0;
