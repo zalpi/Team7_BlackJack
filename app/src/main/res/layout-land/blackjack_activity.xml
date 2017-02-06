@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/stand_button"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/hit_button"
-        android:layout_alignStart="@+id/hit_button"
         android:layout_alignRight="@+id/hit_button"
-        android:layout_alignEnd="@+id/hit_button" />
+        android:layout_alignEnd="@+id/hit_button"
+        android:layout_alignLeft="@+id/hit_button"
+        android:layout_alignStart="@+id/hit_button" />
 
     <TextView
         android:text="score"
@@ -135,6 +135,6 @@
         android:layout_alignTop="@+id/dealer_card2"
         android:layout_toLeftOf="@+id/dealer_card2"
         android:layout_toStartOf="@+id/dealer_card2"
-        android:layout_width="60dp" />
+        android:layout_width="70dp" />
 
 </RelativeLayout>
