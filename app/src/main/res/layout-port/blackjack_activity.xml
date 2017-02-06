@@ -10,9 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/hit_button"
+        android:id="@+id/stand_button"
+        android:layout_alignRight="@+id/hit_button"
+        android:layout_alignEnd="@+id/hit_button"
         android:layout_alignLeft="@+id/hit_button"
-        android:layout_alignStart="@+id/hit_button"
-        android:id="@+id/stand_button" />
+        android:layout_alignStart="@+id/hit_button" />
 
     <TextView
         android:text="money"
@@ -73,8 +75,10 @@
         android:layout_marginTop="72dp"
         android:id="@+id/hit_button"
         android:layout_below="@+id/dealer_card2"
-        android:layout_alignLeft="@+id/dealer_card2"
-        android:layout_alignStart="@+id/dealer_card2" />
+        android:layout_alignRight="@+id/player_card1"
+        android:layout_alignEnd="@+id/player_card1"
+        android:layout_alignLeft="@+id/player_card1"
+        android:layout_alignStart="@+id/player_card1" />
 
     <ImageView
         android:layout_width="100dp"
