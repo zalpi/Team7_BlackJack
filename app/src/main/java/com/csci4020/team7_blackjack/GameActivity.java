@@ -50,10 +50,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             playerTakesAHit();
             dealerTakesAHit();
             dealerTakesAHit();
-            justStarted = false;
+            playerScore.setText(playerScoreInt + "");
         } else {
             playerTakesAHit();
-            if(bust())
+            playerScore.setText(playerScoreInt + "");
+            if(bust(playerScoreInt)) {
+             while(!bust(dealerScoreInt)) {
+                 dealerTakesAHit();
+             }
+            }
             dealerTakesAHit();
         }
     }
@@ -73,12 +78,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Resources res = getResources();
         drawableName = deck.drawCard();
         int resID = res.getIdentifier(drawableName, "drawable", getPackageName());
-        dealerCardTwo.setImageDrawable(dealerCardOne.getDrawable()); //sets playerCardTwo to show what was previously in playerCardOne
-        dealerCardOne.setImageResource(resID);
+        if(justStarted) {
+            dealerCardOne.setImageResource(resID);
+            justStarted = false;
+        }
         dealerScoreInt += deck.getValue(drawableName);
     }
 
-    private Boolean bust() {
+    private Boolean bust(int score) {
+    if(score <= 21) {
+        return false;
+    } else {
+        return true;
+    }
 
     }
 
@@ -88,8 +100,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         deck.setDeck();
 
         //card declarations.
-        dealerCardOne = (ImageView) findViewById(R.id.dealer_card1);
-        dealerCardTwo = (ImageView) findViewById(R.id.dealer_card2);
+        dealerCardOne = (ImageView) findViewById(R.id.dealer_card2); //tee-hee
+        dealerCardTwo = (ImageView) findViewById(R.id.dealer_card1);
         playerCardOne = (ImageView) findViewById(R.id.player_card1);
         playerCardTwo = (ImageView) findViewById(R.id.player_card2);
 
