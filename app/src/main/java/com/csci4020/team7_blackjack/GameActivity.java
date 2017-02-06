@@ -22,12 +22,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private TextView playerScore;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, getPlayerCardTwo;
-    private String[] deckOfCards;
+    private String[] deckOfCards = {"cTwo", "cThree", "cFour", "cFive", "cSix", "cSeven", "cEight",
+            /*Clubs*/               "cNine", "cTen", "cJack", "cQueen", "cKing", "cAce",
+                                    "dTwo", "dThree", "dFour", "dFive", "dSix", "dSeven", "dEight",
+            /*Diamonds*/            "dNine", "dTen", "dJack", "dQueen", "dKing", "dAce",
+                                    "hTwo", "hThree", "hFour", "hFive", "hSix", "hSeven", "hEight",
+            /*Hearts*/              "hNine", "hTen", "hJack", "hQueen", "hKing", "hAce",
+                                    "sTwo", "sThree", "sFour", "sFive", "sSix", "sSeven", "sEight",
+            /*Spades*/              "sNine", "sTen", "sJack", "sQueen", "sKing", "sAce"};
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blackjack_activity);
-        deckOfCards = {};
     }
 
     @Override
