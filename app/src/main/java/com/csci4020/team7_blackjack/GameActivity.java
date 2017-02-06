@@ -29,7 +29,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private TextView playerScore, playerMoney;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
-    private boolean playerStand = false, dealerStand = false;
+    private boolean playerStand = false, dealerStand = false, justStarted = true;
     private Deck deck;
 
     @Override
@@ -45,7 +45,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        playerTakesAHit();
+        if(justStarted) {
+            playerTakesAHit();
+            playerTakesAHit();
+            dealerTakesAHit();
+            dealerTakesAHit();
+            justStarted = false;
+        } else {
+            playerTakesAHit();
+            if(bust())
+            dealerTakesAHit();
+        }
     }
 
     private void playerTakesAHit() { //of that good good
@@ -55,6 +65,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         int resID = res.getIdentifier(drawableName, "drawable", getPackageName());
         playerCardTwo.setImageDrawable(playerCardOne.getDrawable()); //sets playerCardTwo to show what was previously in playerCardOne
         playerCardOne.setImageResource(resID);
+        playerScoreInt += deck.getValue(drawableName);
+    }
+
+    private void dealerTakesAHit() { //of that good good
+        String drawableName = "cards"; //just in case for some reason something breaks or something.
+        Resources res = getResources();
+        drawableName = deck.drawCard();
+        int resID = res.getIdentifier(drawableName, "drawable", getPackageName());
+        dealerCardTwo.setImageDrawable(dealerCardOne.getDrawable()); //sets playerCardTwo to show what was previously in playerCardOne
+        dealerCardOne.setImageResource(resID);
+        dealerScoreInt += deck.getValue(drawableName);
+    }
+
+    private Boolean bust() {
+
     }
 
     private void startGame() {
@@ -73,14 +98,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         //making sure scores start off at 0.
         playerScoreInt = dealerScoreInt = 0;
+        playerScore.setText(playerScoreInt + "");
 
         //setting money to defaulted 200, max should be about 9999 maybe?
         playerMoneyInt = 200;
-
-        for(int i = 1; i < 2; i++) {
-            playerTakesAHit();
-            //dealerTakesAHit();
-        }
     }
 
     private class Deck {
