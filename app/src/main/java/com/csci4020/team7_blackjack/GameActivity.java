@@ -8,4 +8,8 @@ import android.view.View;
  */
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+    @Override
+    public void onClick(View view) {
+
+    }
 }
