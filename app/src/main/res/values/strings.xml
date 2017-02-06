@@ -3,4 +3,5 @@
     <string name="play_dis">PLAY</string>
     <string name="aboot_dis">ABOUT</string> <!-- canadian support confirmed -->
     <string name="more_dis">MORE</string>
+    <string name="money">Money</string>
 </resources>
