@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/cards"
-        android:id="@+id/cards"
+        android:id="@+id/cards_image"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/blackjack_tv"
         android:layout_centerHorizontal="true" />
@@ -65,7 +65,7 @@
         android:fontFamily="serif"
         android:textStyle="normal|bold"
         android:textSize="24sp"
-        android:layout_below="@+id/cards"
+        android:layout_below="@+id/cards_image"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
