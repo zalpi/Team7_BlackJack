@@ -1,8 +1,10 @@
 package com.csci4020.team7_blackjack;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,23 +27,46 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int dealerScoreInt;
     private int playerMoneyInt;
     private TextView playerScore, playerMoney;
-    private ImageView dealerCardOne, dealerCard_two;
-    private ImageView playerCardOne, playerCard_two;
+    private ImageView dealerCardOne, dealerCardTwo;
+    private ImageView playerCardOne, playerCardTwo;
     private boolean playerStand = false, dealerStand = false;
+    private Deck deck;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blackjack_activity);
 
-        //creating a deck to draw from.
-        Deck deck = new Deck();
+        startGame();
+
+        Button b = (Button) findViewById(R.id.hit_button);
+        b.setOnClickListener(this);  //game doesn't start until player clicks hit
+    }
+
+    @Override
+    public void onClick(View view) {
+        playerTakesAHit();
+    }
+
+    private void playerTakesAHit() { //of that good good
+        String drawableName = "cards"; //just in case for some reason something breaks or something.
+        Resources res = getResources();
+        drawableName = deck.drawCard();
+        int resID = res.getIdentifier(drawableName, "drawable", getPackageName());
+        playerCardTwo.setImageDrawable(playerCardOne.getDrawable()); //sets playerCardTwo to show what was previously in playerCardOne
+        playerCardOne.setImageResource(resID);
+    }
+
+    private void startGame() {
+        //initializing deck to draw from.
+        deck = new Deck();
+        deck.setDeck();
 
         //card declarations.
         dealerCardOne = (ImageView) findViewById(R.id.dealer_card1);
-        dealerCard_two = (ImageView) findViewById(R.id.dealer_card2);
+        dealerCardTwo = (ImageView) findViewById(R.id.dealer_card2);
         playerCardOne = (ImageView) findViewById(R.id.player_card1);
-        playerCard_two = (ImageView) findViewById(R.id.player_card2);
+        playerCardTwo = (ImageView) findViewById(R.id.player_card2);
 
         //player's score is the only thing that updates on screen.
         playerScore = (TextView) findViewById(R.id.player_score);
@@ -52,33 +77,42 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //setting money to defaulted 200, max should be about 9999 maybe?
         playerMoneyInt = 200;
 
-        Button b = (Button) findViewById(R.id.hit_button);
-        b.setOnClickListener(this);  //game doesn't start until player hits
-    }
-
-    @Override
-    public void onClick(View view) {
-
+        for(int i = 1; i < 2; i++) {
+            playerTakesAHit();
+            //dealerTakesAHit();
+        }
     }
 
     private class Deck {
         private String[] deckOfCards;
+
+        private void setDeck() {
+            deckOfCards = new String[]{"c_two", "c_three", "c_four", "c_five", "c_six", "c_seven", "c_eight",
+            /*Clubs*/                  "c_nine", "c_ten", "c_jack", "c_queen", "c_king", "c_ace",
+                                       "d_two", "d_three", "d_four", "d_five", "d_six", "d_seven", "d_eight",
+            /*Diamonds*/               "d_nine", "d_ten", "d_jack", "d_queen", "d_king", "d_ace",
+                                       "h_two", "h_three", "h_four", "h_five", "h_six", "h_seven", "h_eight",
+            /*Hearts*/                 "h_nine", "h_ten", "h_jack", "h_queen", "h_king", "h_ace",
+                                       "s_two", "s_three", "s_four", "s_five", "s_six", "s_seven", "s_eight",
+            /*Spades*/                 "s_nine", "s_ten", "s_jack", "s_queen", "s_king", "s_ace"};
+            //  Clubs: 0-12 | Diamonds: 13-25 | Hearts: 26-38 | Spades: 39 - 51
+        }
+
         private Deck() {
             setDeck();
         }
 
-        private String drawCard(String card) {
+        private String drawCard() {
+            String card = "cards";
             Random r = new Random();
-            int value = 0;
-            int i = r.nextInt((52 - 1)); //I mean the array is set up for 0-51 so dunno
-
-            if(deckOfCards[i].equals("drawn")) {
-                drawCard(card);
-            } else {
-                card = deckOfCards[i];
-                value = getValue(card);
-                deckOfCards[i] = "drawn";
-            }
+            int i = r.nextInt((51 - 0)); //I mean the array is set up for 0-51 so dunno
+            Log.d("Draw Error",Integer.toString(i));
+            do {                            //TODO: Use something that doesn't eventually result in deadlock.
+                i = r.nextInt((51 - 0));    //this will eventually result in a deadlock
+                                            //but a single game of blackjack shouldn't cause it.
+            } while(deckOfCards[i].equals("drawn"));
+            card = deckOfCards[i];
+            deckOfCards[i] = "drawn";
             return card;
         }
 
@@ -161,20 +195,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 case "s_ace":
                     v = 11;
                     break;
+                case "cards":
+                    v = 0;
+                    Log.d("Draw Error","Card wasn't drawn properly.");
+                    break;
             }
-
             return v;
-        }
-        private void setDeck() {
-            String[] deckOfCards = {"c_two", "c_three", "c_four", "c_five", "c_six", "c_seven", "c_eight",
-            /*Clubs*/               "c_nine", "c_ten", "c_jack", "c_queen", "c_king", "c_ace",
-                                    "d_two", "d_three", "d_four", "d_five", "d_six", "d_seven", "d_eight",
-            /*Diamonds*/            "d_nine", "d_ten", "d_jack", "d_queen", "d_king", "d_ace",
-                                    "h_two", "h_three", "h_four", "h_five", "h_six", "h_seven", "h_eight",
-            /*Hearts*/              "h_nine", "h_ten", "h_jack", "h_queen", "h_king", "h_ace",
-                                    "s_two", "s_three", "s_four", "s_five", "s_six", "s_seven", "s_eight",
-            /*Spades*/              "s_nine", "s_ten", "s_jack", "s_queen", "s_king", "s_ace"};
-            //  Clubs: 0-12 | Diamonds: 13-25 | Hearts: 26-38 | Spades: 39 - 51
         }
     }
 }
