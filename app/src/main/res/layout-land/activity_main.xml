@@ -29,20 +29,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="@string/more_dis"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/more_button"
-        android:textSize="24sp"
-        android:fontFamily="serif"
-        android:textStyle="normal|bold"
-        android:elevation="0dp"
-        android:layout_below="@+id/cards_image"
-        android:layout_marginTop="43dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="Briana Schmidt and Zachary Pigott"
         android:layout_width="wrap_content"
@@ -75,6 +61,19 @@
         android:textSize="24sp"
         android:textStyle="normal|bold"
         android:layout_below="@+id/more_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="@string/more_dis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/more_button"
+        android:textSize="24sp"
+        android:fontFamily="serif"
+        android:textStyle="normal|bold"
+        android:elevation="0dp"
+        android:layout_below="@+id/play_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
