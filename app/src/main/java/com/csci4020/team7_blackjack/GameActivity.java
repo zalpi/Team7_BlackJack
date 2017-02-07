@@ -31,6 +31,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private boolean playerStand = false, dealerStand = false, justStarted = true;
     private Deck deck;
 
+    private int holeCard;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,6 +95,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         drawableName = deck.drawCard();
         int resID = res.getIdentifier(drawableName, "drawable", getPackageName());
         if(justStarted) {
+            holeCard = resID; // first card drawn will be the dealer's hole card.
+            drawableName = deck.drawCard();
+            resID = res.getIdentifier(drawableName, "drawable", getPackageName());
+
             dealerCardOne.setImageResource(resID);
             justStarted = false;
         }
@@ -108,7 +114,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void whoWinsThePot() {
-        //TODO: A dialog box that says if won/lost/tied with an option to close said dialog. Shuffles deck, resets scores, resets cards, updates money field.
+        //TODO: A dialog box that says if won/lost/tied with an option to close said dialog.
+        if(bust(playerScoreInt) && bust(dealerScoreInt)) {
+            //The dealer wins if they both busted.
+        } else if(bust(playerScoreInt)) {
+            //The Dealer Wins.
+        } else if (bust(dealerScoreInt)) {
+            //The player wins.
+        } else if (playerScoreInt == dealerScoreInt) {
+            //It's a tie, player neither wins nor loses
+        } else if (playerScoreInt > dealerScoreInt) {
+            //Player wins.
+        } else {
+            //Dealer wins. If the game is bugged, house will always win probably.
+        }
+        //Add a toast telling the player that pressing "Hit" will start a new game now.
+        justStarted = true;
     }
 
     private void startGame() {
