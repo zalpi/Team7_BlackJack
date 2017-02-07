@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {   //Opens up the blackjack wikipedia page
             @Override                                       //in the default browser.
             public void onClick(View view) {
-                Uri uri = Uri.parse("https://en.wikipedia.org/wiki/Blackjack");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                Uri uri = Uri.parse("https://www.pagat.com/banking/blackjack.html"); //This website was used to base the rules.
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);                // so might as well give them some ad revenue.
                 startActivity(intent);
             }
         });
