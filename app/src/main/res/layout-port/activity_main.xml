@@ -22,11 +22,11 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Quit"
+        android:text="@string/more_dis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/play"
-        android:id="@+id/quit"
+        android:layout_below="@+id/play_button"
+        android:id="@+id/more_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -50,31 +50,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/cards"
-        android:id="@+id/cards"
+        android:id="@+id/cards_image"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/blackjack_tv"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Play"
+        android:text="@string/play_dis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/play"
+        android:id="@+id/play_button"
         android:layout_marginTop="61dp"
         android:elevation="0dp"
         android:fontFamily="serif"
         android:textStyle="normal|bold"
         android:textSize="24sp"
-        android:layout_below="@+id/cards"
+        android:layout_below="@+id/cards_image"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="about"
+        android:text="@string/aboot_dis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quit"
-        android:id="@+id/about"
+        android:layout_below="@+id/more_button"
+        android:id="@+id/about_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
