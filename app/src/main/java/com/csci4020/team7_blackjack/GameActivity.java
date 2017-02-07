@@ -18,7 +18,6 @@ import java.util.Random;
 
 //TODO set up scoring rules.
 //TODO set up a YOU WON/YOU LOST dialog.
-//TODO set up card counting to prevent duplicates.
 //TODO set up dealer switch cases.
 //TODO add money to bet along with an amount option.
 

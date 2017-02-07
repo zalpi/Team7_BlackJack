@@ -18,6 +18,9 @@
         <activity
             android:name=".GameActivity"
             android:label="Virtual Blackjack 5000"/>
+        <activity
+            android:name=".AboutActivity"
+            android:label="Aboot"/>
     </application>
 
 </manifest>
