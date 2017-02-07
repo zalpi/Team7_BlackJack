@@ -54,16 +54,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!playerStand) {
-                        dealerScore.setText(dealerScoreInt + "");
-                        dealerCardTwo.setImageResource(holeCard); //Reveals the hole card.
-                        while (dealerScoreInt < 17) {
-                            //Maybe show the cards changing?
-                            dealerTakesAHit();
-                        }
-                        playerStand = true;
-                        whoWinsThePot();
-                    }
+                    lastStand();
                 }
             });
             if (justStarted) {
@@ -77,7 +68,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     playerTakesAHit();
                     playerScore.setText(playerScoreInt + "");
                 } else {
-                    whoWinsThePot();
+                    lastStand();
                 }
             }
         } else {
@@ -123,6 +114,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         } else {
             return true;
+        }
+    }
+
+    private void lastStand() { //used when the player busts, and when the play stands.
+        if (!playerStand) {
+            dealerCardTwo.setImageResource(holeCard); //Reveals the hole card.
+            while (dealerScoreInt < 17) {
+                //Maybe show the cards changing?
+                dealerTakesAHit();
+            }
+            dealerScore.setText(dealerScoreInt + "");
+            playerStand = true;
+            whoWinsThePot();
         }
     }
 
