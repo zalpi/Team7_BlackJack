@@ -3,4 +3,43 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="This app will do the following:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about2"
+        android:text="-Let one person play BlackJack with the phone." />
+
+    <TextView
+        android:text="-The phone is the dealer."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about3" />
+
+    <TextView
+        android:text="-The player should start with some amount of money and be allowed to bet."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about4" />
+
+    <TextView
+        android:text="-If the user stops in the middle of a game and closes the app, when the app is reopened, the game should continue where it left off."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about5" />
+
+    <TextView
+        android:text='-The user should not have to guess what to do. The app should be designed in such a way that it is "obvious" how the game is played, even if they have never played Blackjack before.'
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about6" />
 </LinearLayout>
