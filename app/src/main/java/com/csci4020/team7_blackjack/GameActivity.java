@@ -49,33 +49,46 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        Button b = (Button) findViewById(R.id.stand_button);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!playerStand) {
-                    dealerScore.setText(dealerScoreInt + "");
-                    while(dealerScoreInt < 17) {
-                        dealerTakesAHit();
+        if (!(playerStand && justStarted)) {
+            Button b = (Button) findViewById(R.id.stand_button);
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!playerStand) {
+                        dealerScore.setText(dealerScoreInt + "");
+                        dealerCardTwo.setImageResource(holeCard); //Reveals the hole card.
+                        while (dealerScoreInt < 17) {
+                            //Maybe show the cards changing?
+                            dealerTakesAHit();
+                        }
+                        playerStand = true;
+                        whoWinsThePot();
                     }
-                    playerStand = true;
-                    whoWinsThePot(); //TODO: Implement a method to determine win/lose/tie.
+                }
+            });
+            if (justStarted) {
+                playerTakesAHit();
+                playerTakesAHit();
+                dealerTakesAHit();
+                dealerTakesAHit();
+                playerScore.setText(playerScoreInt + "");
+            } else if (!playerStand) {  //has player already stood? If so, hit does nothing.
+                if (!bust(playerScoreInt)) { //checks if the player has busted already or not.
+                    playerTakesAHit();
+                    playerScore.setText(playerScoreInt + "");
+                } else {
+                    whoWinsThePot();
                 }
             }
-        });
-        if(justStarted) {
-            playerTakesAHit();
-            playerTakesAHit();
-            dealerTakesAHit();
-            dealerTakesAHit();
+        } else {
+            deck.resetDeck();
+
+            //making sure scores start off at 0.
+            playerScoreInt = dealerScoreInt = 0;
             playerScore.setText(playerScoreInt + "");
-        } else if (!playerStand) {  //has player already stood? If so, hit does nothing.
-            if (!bust(playerScoreInt)){ //checks if the player has busted already or not.
-                playerTakesAHit();
-                playerScore.setText(playerScoreInt + "");
-            } else {
-                whoWinsThePot();
-            }
+            dealerScore.setText("score");
+            playerMoney.setText(playerMoneyInt + "");
+            playerStand = false;
         }
     }
 
@@ -117,18 +130,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //TODO: A dialog box that says if won/lost/tied with an option to close said dialog.
         if(bust(playerScoreInt) && bust(dealerScoreInt)) {
             //The dealer wins if they both busted.
+            //Player loses the bet money
         } else if(bust(playerScoreInt)) {
             //The Dealer Wins.
+            //Player loses the bet money
         } else if (bust(dealerScoreInt)) {
             //The player wins.
+            //Player gains twice the amount they bet.
         } else if (playerScoreInt == dealerScoreInt) {
-            //It's a tie, player neither wins nor loses
+            //It's a tie, player neither wins nor loses.
+            //Bet is returned to the player
         } else if (playerScoreInt > dealerScoreInt) {
             //Player wins.
+            //Player gains twice the amount they bet.
         } else {
             //Dealer wins. If the game is bugged, house will always win probably.
+            //Player loses the bet money
         }
-        //Add a toast telling the player that pressing "Hit" will start a new game now.
+        //Add a toast telling the player that pressing "Hit" again will start a new game now.
+        //Maybe having the bet be able to be changed here?
+        //Could also just have a textview saying "You won X amount! Hit to play again!"
         justStarted = true;
     }
 
@@ -146,6 +167,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //player's score is the only thing that updates on screen.
         playerScore = (TextView) findViewById(R.id.player_score);
         dealerScore = (TextView) findViewById(R.id.score);
+        playerMoney = (TextView) findViewById(R.id.money_textview);
 
         //making sure scores start off at 0.
         playerScoreInt = dealerScoreInt = 0;
