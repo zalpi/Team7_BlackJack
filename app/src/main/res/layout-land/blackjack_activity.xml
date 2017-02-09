@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/green">
 
     <Button
         android:text="stand"
@@ -26,7 +28,7 @@
         android:layout_alignRight="@+id/player"
         android:layout_alignEnd="@+id/player"
         android:layout_marginBottom="22dp"
-        android:textColor="@color/red" />
+        android:textColor="@color/white" />
 
     <TextView
         android:text="Player"
@@ -53,7 +55,7 @@
         android:layout_below="@+id/player"
         android:layout_alignLeft="@+id/dealer_card1"
         android:layout_alignStart="@+id/dealer_card1"
-        android:textColor="@color/red" />
+        android:textColor="@color/white" />
 
     <TextView
         android:text="Dealer"
@@ -163,7 +165,7 @@
         android:layout_toStartOf="@+id/dealer_card2"
         android:layout_marginRight="36dp"
         android:layout_marginEnd="36dp"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="16sp" />
 
     <EditText
@@ -173,7 +175,7 @@
         android:ems="10"
         android:id="@+id/money"
         android:text="cash"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:layout_alignTop="@+id/dealer"
         android:layout_toRightOf="@+id/bet_money"
