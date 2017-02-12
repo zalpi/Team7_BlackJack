@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -25,12 +27,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int playerScoreInt; //anything over 21 will be considered a bust
     private int dealerScoreInt;
     private int playerMoneyInt;
-    private TextView playerScore, playerMoney, dealerScore;
+    private int bet;
+    private TextView playerScore, playerMoney, dealerScore, betMoney;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
     private boolean playerStand = false, dealerStand = false, justStarted = true;
     private Deck deck;
-
     private int holeCard;
 
 
@@ -74,12 +76,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             deck.resetDeck();
 
-            //making sure scores start off at 0.
-            playerScoreInt = dealerScoreInt = 0;
-            playerScore.setText(playerScoreInt + "");
-            dealerScore.setText("score");
-            playerMoney.setText(playerMoneyInt + "");
-            playerStand = false;
+            TextViews();
         }
     }
 
@@ -135,21 +132,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if(bust(playerScoreInt) && bust(dealerScoreInt)) {
             //The dealer wins if they both busted.
             //Player loses the bet money
+            playerMoneyInt -= bet;
+
         } else if(bust(playerScoreInt)) {
             //The Dealer Wins.
             //Player loses the bet money
+            playerMoneyInt -= bet;
+
         } else if (bust(dealerScoreInt)) {
             //The player wins.
             //Player gains twice the amount they bet.
+            playerMoneyInt += bet * 2;
+
         } else if (playerScoreInt == dealerScoreInt) {
             //It's a tie, player neither wins nor loses.
             //Bet is returned to the player
+            playerMoneyInt += bet;
+
         } else if (playerScoreInt > dealerScoreInt) {
             //Player wins.
             //Player gains twice the amount they bet.
+            playerMoneyInt += bet * 2;
         } else {
             //Dealer wins. If the game is bugged, house will always win probably.
             //Player loses the bet money
+            playerMoneyInt -= bet;
         }
         //Add a toast telling the player that pressing "Hit" again will start a new game now.
         //Maybe having the bet be able to be changed here?
@@ -168,17 +175,30 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playerCardOne = (ImageView) findViewById(R.id.player_card1);
         playerCardTwo = (ImageView) findViewById(R.id.player_card2);
 
+        //making sure scores start off at 0.
+        playerScoreInt = 0;
+        dealerScoreInt = 0;
+        //setting money to defaulted 500, max should be about 9999 maybe?
+        playerMoneyInt = 500;
+
+        // set bet money
+            bet = playerMoneyInt / 2;
+
+        TextViews();
+    }
+
+    private void TextViews() {
         //player's score is the only thing that updates on screen.
         playerScore = (TextView) findViewById(R.id.player_score);
         dealerScore = (TextView) findViewById(R.id.score);
         playerMoney = (TextView) findViewById(R.id.money_textview);
+        betMoney = (TextView) findViewById(R.id.money_bet);
 
-        //making sure scores start off at 0.
-        playerScoreInt = dealerScoreInt = 0;
         playerScore.setText(playerScoreInt + "");
+        dealerScore.setText(dealerScoreInt + "");
+        playerMoney.setText("$ " + playerMoneyInt);
+        betMoney.setText("$ " + bet);
 
-        //setting money to defaulted 200, max should be about 9999 maybe?
-        playerMoneyInt = 200;
     }
 
     private class Deck {
@@ -216,6 +236,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         private void resetDeck() {
             setDeck();
+
+            //making sure scores start off at 0.
+            playerScoreInt = 0;
+            dealerScoreInt = 0;
+            playerStand = false;
+
+            //if player doesn't have enough money
+            if (playerMoneyInt < bet) {
+                Toast.makeText(GameActivity.this, "You don't have enough money! Setting money back to $500",
+                        Toast.LENGTH_LONG).show();
+                playerMoneyInt = 500;
+            }
+            else {
+               playerMoneyInt -= bet;
+            }
         }
 
         private int getValue(String card) {

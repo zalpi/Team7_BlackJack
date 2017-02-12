@@ -42,7 +42,6 @@
 
 
     <TextView
-        android:text="score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/score"
@@ -64,7 +63,6 @@
         android:layout_marginEnd="7dp" />
 
     <TextView
-        android:text="score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/player_score"
@@ -137,7 +135,6 @@
         android:layout_marginEnd="19dp" />
 
     <TextView
-        android:text="@string/money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/money_textview"
@@ -160,17 +157,14 @@
         android:layout_alignRight="@+id/moneyavail_tv"
         android:layout_alignEnd="@+id/moneyavail_tv" />
 
-    <EditText
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/money"
-        android:text="cash"
-        android:textColor="@color/white"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bet_money"
+        android:layout_toRightOf="@+id/money_textview"
+        android:layout_toEndOf="@+id/money_textview"
+        android:id="@+id/money_bet"
         android:textSize="16sp"
-        android:layout_below="@+id/money_textview"
-        android:layout_alignLeft="@+id/money_textview"
-        android:layout_alignStart="@+id/money_textview" />
+        android:textColor="@color/white" />
 
 </RelativeLayout>
