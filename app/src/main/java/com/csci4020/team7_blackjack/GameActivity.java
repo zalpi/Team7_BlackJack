@@ -77,6 +77,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             deck.resetDeck();
 
             TextViews();
+          
+            dealerCardOne.setImageResource(R.drawable.back);
+            dealerCardTwo.setImageResource(R.drawable.back);
+            playerCardOne.setImageResource(R.drawable.back);
+            playerCardTwo.setImageResource(R.drawable.back);
+            playerStand = false;
+   
         }
     }
 
@@ -157,6 +164,30 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             //Dealer wins. If the game is bugged, house will always win probably.
             //Player loses the bet money
             playerMoneyInt -= bet;
+          
+            whoWon.setText(("You lost!\n" +
+                    "Hit to start a new round!!"));  //Dealer wins if both bust.
+                                            //Player loses the bet money.
+        } else if(bust(playerScoreInt)) {
+            whoWon.setText(("You lost!\n" +
+                    "Hit to start a new round!"));  //The Dealer Wins.
+                                            //Player loses the bet money
+        } else if (bust(dealerScoreInt)) {
+            whoWon.setText(("You won!\n" +
+                    "Hit to start a new round!"));   //The player wins.
+                                            //Player gains twice the amount they bet.
+        } else if (playerScoreInt == dealerScoreInt) {
+            whoWon.setText(("It's a tie!\n" +
+                    "Hit to start a new round!"));//It's a tie, player neither wins nor loses.
+                                            //Bet is returned to the player
+        } else if (playerScoreInt > dealerScoreInt) {
+            whoWon.setText(("You won!\n" +
+                    "Hit to start a new round!"));   //Player wins.
+                                            //Player gains twice the amount they bet.
+        } else {
+            whoWon.setText(("You lost!!\n" +
+                    "Hit to start a new round!")); //Dealer wins. If the game is bugged, house will always win probably.
+                                            // Player loses the bet money
         }
         //Add a toast telling the player that pressing "Hit" again will start a new game now.
         //Maybe having the bet be able to be changed here?
@@ -193,12 +224,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         dealerScore = (TextView) findViewById(R.id.score);
         playerMoney = (TextView) findViewById(R.id.money_textview);
         betMoney = (TextView) findViewById(R.id.money_bet);
+        playerScore.setText(playerScoreInt + "");
+        dealerScore.setText("score");
+        playerMoney.setText(playerMoneyInt + "");
+        whoWon.setText(null);
+        whoWon = (TextView) findViewById(R.id.whoWon_textview);
+
 
         playerScore.setText(playerScoreInt + "");
         dealerScore.setText(dealerScoreInt + "");
         playerMoney.setText("$ " + playerMoneyInt);
         betMoney.setText("$ " + bet);
-
     }
 
     private class Deck {
