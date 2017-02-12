@@ -31,10 +31,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private TextView playerScore, playerMoney, dealerScore, whoWon, betMoney;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
-    private boolean playerStand = false, dealerStand = false, justStarted = true;
+    private boolean playerStand, dealerStand, justStarted;
     private Deck deck;
     private int holeCard;
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+        savedInstanceState.putBoolean("playerStand", playerStand);
+        savedInstanceState.putBoolean("dealerStand", dealerStand);
+        savedInstanceState.putBoolean("justStarted", justStarted);
+        savedInstanceState.putInt("dealerScoreInt", dealerScoreInt);
+        savedInstanceState.putInt("playerScoreInt", playerScoreInt);
+        savedInstanceState.putInt("playerMoneyInt", playerMoneyInt);
+        savedInstanceState.putInt("bet", bet);
+        //savedInstanceState.putInt("holeCard", holeCard);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -179,6 +194,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //initializing deck to draw from.
         deck = new Deck();
         deck.setDeck();
+
+        playerStand = false;
+        dealerStand = false;
+        justStarted = true;
 
         //card declarations.
         dealerCardOne = (ImageView) findViewById(R.id.dealer_card2); //tee-hee
