@@ -79,6 +79,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             playerScoreInt = dealerScoreInt = 0;
             dealerCardOne.setImageResource(R.drawable.back);
             dealerCardTwo.setImageResource(R.drawable.back);
+            playerCardOne.setImageResource(R.drawable.back);
+            playerCardTwo.setImageResource(R.drawable.back);
             playerScore.setText(playerScoreInt + "");
             dealerScore.setText("score");
             playerMoney.setText(playerMoneyInt + "");
