@@ -25,7 +25,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int playerScoreInt; //anything over 21 will be considered a bust
     private int dealerScoreInt;
     private int playerMoneyInt;
-    private TextView playerScore, playerMoney, dealerScore;
+    private TextView playerScore, playerMoney, dealerScore, whoWon;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
     private boolean playerStand = false, dealerStand = false, justStarted = true;
@@ -172,6 +172,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playerScore = (TextView) findViewById(R.id.player_score);
         dealerScore = (TextView) findViewById(R.id.score);
         playerMoney = (TextView) findViewById(R.id.money_textview);
+        whoWon = (TextView) findViewById(R.id.whoWon_textview);
 
         //making sure scores start off at 0.
         playerScoreInt = dealerScoreInt = 0;

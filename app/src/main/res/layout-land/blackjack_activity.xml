@@ -137,4 +137,11 @@
         android:layout_toStartOf="@+id/dealer_card2"
         android:layout_width="70dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/score"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/whoWon_textview" />
+
 </RelativeLayout>
