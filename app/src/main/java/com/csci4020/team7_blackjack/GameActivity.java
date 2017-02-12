@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int dealerScoreInt;
     private int playerMoneyInt;
     private int bet;
-    private TextView playerScore, playerMoney, dealerScore, betMoney;
+    private TextView playerScore, playerMoney, dealerScore, whoWon, betMoney;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
     private boolean playerStand = false, dealerStand = false, justStarted = true;
@@ -77,13 +77,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             deck.resetDeck();
 
             TextViews();
-          
+
             dealerCardOne.setImageResource(R.drawable.back);
             dealerCardTwo.setImageResource(R.drawable.back);
             playerCardOne.setImageResource(R.drawable.back);
             playerCardTwo.setImageResource(R.drawable.back);
             playerStand = false;
-   
+
         }
     }
 
@@ -137,57 +137,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void whoWinsThePot() {
         //TODO: A dialog box that says if won/lost/tied with an option to close said dialog.
         if(bust(playerScoreInt) && bust(dealerScoreInt)) {
-            //The dealer wins if they both busted.
-            //Player loses the bet money
-            playerMoneyInt -= bet;
-
-        } else if(bust(playerScoreInt)) {
-            //The Dealer Wins.
-            //Player loses the bet money
-            playerMoneyInt -= bet;
-
-        } else if (bust(dealerScoreInt)) {
-            //The player wins.
-            //Player gains twice the amount they bet.
-            playerMoneyInt += bet * 2;
-
-        } else if (playerScoreInt == dealerScoreInt) {
-            //It's a tie, player neither wins nor loses.
-            //Bet is returned to the player
-            playerMoneyInt += bet;
-
-        } else if (playerScoreInt > dealerScoreInt) {
-            //Player wins.
-            //Player gains twice the amount they bet.
-            playerMoneyInt += bet * 2;
-        } else {
-            //Dealer wins. If the game is bugged, house will always win probably.
-            //Player loses the bet money
-            playerMoneyInt -= bet;
-          
             whoWon.setText(("You lost!\n" +
-                    "Hit to start a new round!!"));  //Dealer wins if both bust.
-                                            //Player loses the bet money.
+                    "Hit to start a new round!!")); //Dealer wins if both bust.
+            playerMoneyInt -= bet;                  //Player loses the bet money.
         } else if(bust(playerScoreInt)) {
             whoWon.setText(("You lost!\n" +
-                    "Hit to start a new round!"));  //The Dealer Wins.
-                                            //Player loses the bet money
+                    "Hit to start a new round!!")); //Dealer wins if both bust.
+            playerMoneyInt -= bet;                  //Player loses the bet money.
         } else if (bust(dealerScoreInt)) {
             whoWon.setText(("You won!\n" +
-                    "Hit to start a new round!"));   //The player wins.
-                                            //Player gains twice the amount they bet.
+                    "Hit to start a new round!"));  //The player wins.
+            playerMoneyInt += bet * 2;              //Player gains twice the amount they bet.
         } else if (playerScoreInt == dealerScoreInt) {
             whoWon.setText(("It's a tie!\n" +
-                    "Hit to start a new round!"));//It's a tie, player neither wins nor loses.
-                                            //Bet is returned to the player
+                    "Hit to start a new round!"));  //It's a tie, player neither wins nor loses.
+            playerMoneyInt += bet;                  //Bet is returned to the player
         } else if (playerScoreInt > dealerScoreInt) {
             whoWon.setText(("You won!\n" +
-                    "Hit to start a new round!"));   //Player wins.
-                                            //Player gains twice the amount they bet.
+                    "Hit to start a new round!"));  //Player wins.
+            playerMoneyInt += bet * 2;              //Player gains twice the amount they bet.
         } else {
             whoWon.setText(("You lost!!\n" +
                     "Hit to start a new round!")); //Dealer wins. If the game is bugged, house will always win probably.
-                                            // Player loses the bet money
+            playerMoneyInt -= bet;                 //Player loses the bet money
+
+
         }
         //Add a toast telling the player that pressing "Hit" again will start a new game now.
         //Maybe having the bet be able to be changed here?
