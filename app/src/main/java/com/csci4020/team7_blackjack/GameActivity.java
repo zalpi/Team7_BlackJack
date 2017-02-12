@@ -28,14 +28,42 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int dealerScoreInt;
     private int playerMoneyInt;
     private int bet;
-    private TextView playerScore, playerMoney, dealerScore, betMoney, whoWon;
+    private TextView playerScore, playerMoney, dealerScore, whoWon, betMoney;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
-    private boolean playerStand = false, dealerStand = false, justStarted = true;
+    private boolean playerStand, dealerStand, justStarted;
     private Deck deck;
     private int holeCard;
 
+/*
+    @Override
+    public void onSaveInstanceState(Bundle outState) {   //Issues with getting it to work. Commented out for later.
+        super.onSaveInstanceState(outState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+        outState.putBoolean("playerStand", playerStand);
+        outState.putBoolean("dealerStand", dealerStand);
+        outState.putBoolean("justStarted", justStarted);
+        outState.putInt("dealerScoreInt", dealerScoreInt);
+        outState.putInt("playerScoreInt", playerScoreInt);
+        outState.putInt("playerMoneyInt", playerMoneyInt);
+        outState.putInt("bet", bet);
+        //savedInstanceState.putInt("holeCard", holeCard);
+    }
 
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        playerStand = savedInstanceState.getBoolean("playerStand");
+        dealerStand = savedInstanceState.getBoolean("dealerStand");
+        justStarted = savedInstanceState.getBoolean("justStarted");
+        dealerScoreInt = savedInstanceState.getInt("dealerScoreInt");
+        playerScoreInt = savedInstanceState.getInt("playerScoreInt");
+        bet = savedInstanceState.getInt("bet");
+        playerMoneyInt = savedInstanceState.getInt("playerMoneyInt");
+    }
+*/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,14 +104,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             deck.resetDeck();
 
-            TextViews();
-          
+            //TextViews();
+            //making sure scores start off at 0.
+            playerScoreInt = dealerScoreInt = 0;
+            playerScore.setText(playerScoreInt + "");
+            dealerScore.setText("score");
+            playerMoney.setText(playerMoneyInt + "");
+            playerMoney.setText("$ " + playerMoneyInt);
+            betMoney.setText("$ " + bet);
+            whoWon.setText(null);
+
             dealerCardOne.setImageResource(R.drawable.back);
             dealerCardTwo.setImageResource(R.drawable.back);
             playerCardOne.setImageResource(R.drawable.back);
             playerCardTwo.setImageResource(R.drawable.back);
             playerStand = false;
-   
+
         }
     }
 
@@ -137,57 +173,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void whoWinsThePot() {
         //TODO: A dialog box that says if won/lost/tied with an option to close said dialog.
         if(bust(playerScoreInt) && bust(dealerScoreInt)) {
-            //The dealer wins if they both busted.
-            //Player loses the bet money
-            playerMoneyInt -= bet;
-
-        } else if(bust(playerScoreInt)) {
-            //The Dealer Wins.
-            //Player loses the bet money
-            playerMoneyInt -= bet;
-
-        } else if (bust(dealerScoreInt)) {
-            //The player wins.
-            //Player gains twice the amount they bet.
-            playerMoneyInt += bet * 2;
-
-        } else if (playerScoreInt == dealerScoreInt) {
-            //It's a tie, player neither wins nor loses.
-            //Bet is returned to the player
-            playerMoneyInt += bet;
-
-        } else if (playerScoreInt > dealerScoreInt) {
-            //Player wins.
-            //Player gains twice the amount they bet.
-            playerMoneyInt += bet * 2;
-        } else {
-            //Dealer wins. If the game is bugged, house will always win probably.
-            //Player loses the bet money
-            playerMoneyInt -= bet;
-          
             whoWon.setText(("You lost!\n" +
-                    "Hit to start a new round!!"));  //Dealer wins if both bust.
+             "Hit to start a new round!!"));  //Dealer wins if both bust.
                                             //Player loses the bet money.
-        } if(bust(playerScoreInt)) {
+                      //Player loses the bet money.
+        } else if(bust(playerScoreInt)) {
+
             whoWon.setText(("You lost!\n" +
-                    "Hit to start a new round!"));  //The Dealer Wins.
-                                            //Player loses the bet money
+                    "Hit to start a new round!!")); //Dealer wins if both bust.
+            playerMoneyInt -= bet;                  //Player loses the bet money.
         } else if (bust(dealerScoreInt)) {
             whoWon.setText(("You won!\n" +
-                    "Hit to start a new round!"));   //The player wins.
-                                            //Player gains twice the amount they bet.
+                    "Hit to start a new round!"));  //The player wins.
+            playerMoneyInt += bet * 2;              //Player gains twice the amount they bet.
         } else if (playerScoreInt == dealerScoreInt) {
             whoWon.setText(("It's a tie!\n" +
-                    "Hit to start a new round!"));//It's a tie, player neither wins nor loses.
-                                            //Bet is returned to the player
+                    "Hit to start a new round!"));  //It's a tie, player neither wins nor loses.
+            playerMoneyInt += bet;                  //Bet is returned to the player
         } else if (playerScoreInt > dealerScoreInt) {
             whoWon.setText(("You won!\n" +
-                    "Hit to start a new round!"));   //Player wins.
-                                            //Player gains twice the amount they bet.
+                    "Hit to start a new round!"));  //Player wins.
+            playerMoneyInt += bet * 2;              //Player gains twice the amount they bet.
         } else {
             whoWon.setText(("You lost!!\n" +
                     "Hit to start a new round!")); //Dealer wins. If the game is bugged, house will always win probably.
-                                            // Player loses the bet money
+            playerMoneyInt -= bet;                 //Player loses the bet money
         }
         //Add a toast telling the player that pressing "Hit" again will start a new game now.
         //Maybe having the bet be able to be changed here?
@@ -199,6 +209,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //initializing deck to draw from.
         deck = new Deck();
         deck.setDeck();
+
+        playerStand = false;
+        dealerStand = false;
+        justStarted = true;
 
         //card declarations.
         dealerCardOne = (ImageView) findViewById(R.id.dealer_card2); //tee-hee
@@ -213,7 +227,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playerMoneyInt = 500;
 
         // set bet money
-            bet = playerMoneyInt / 2;
+        bet = playerMoneyInt / 2;
 
         TextViews();
     }
@@ -225,10 +239,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playerMoney = (TextView) findViewById(R.id.money_textview);
         betMoney = (TextView) findViewById(R.id.money_bet);
         whoWon = (TextView) findViewById(R.id.whoWon_textview);
-
-        playerScore.setText(playerScoreInt + "");
-        dealerScore.setText("score");
-        playerMoney.setText(playerMoneyInt + "");
         whoWon.setText(null);
 
         playerScore.setText(playerScoreInt + "");
@@ -283,9 +293,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(GameActivity.this, "You don't have enough money! Setting money back to $500",
                         Toast.LENGTH_LONG).show();
                 playerMoneyInt = 500;
-            }
-            else {
-               playerMoneyInt -= bet;
             }
         }
 

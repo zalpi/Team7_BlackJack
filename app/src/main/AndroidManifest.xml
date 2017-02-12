@@ -15,9 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- I give up on saving data between layout flips for this one. Maybe next time. -->
         <activity
             android:name=".GameActivity"
-            android:label="Virtual Blackjack 5000"/>
+            android:label="Virtual Blackjack 5000"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
             android:name=".AboutActivity"
             android:label="Information about App"/>
