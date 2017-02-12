@@ -160,8 +160,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             whoWon.setText(("You lost!!\n" +
                     "Hit to start a new round!")); //Dealer wins. If the game is bugged, house will always win probably.
             playerMoneyInt -= bet;                 //Player loses the bet money
-
-
         }
         //Add a toast telling the player that pressing "Hit" again will start a new game now.
         //Maybe having the bet be able to be changed here?
@@ -187,7 +185,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playerMoneyInt = 500;
 
         // set bet money
-            bet = playerMoneyInt / 2;
+        bet = playerMoneyInt / 2;
 
         TextViews();
     }
@@ -201,9 +199,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playerScore.setText(playerScoreInt + "");
         dealerScore.setText("score");
         playerMoney.setText(playerMoneyInt + "");
-        whoWon.setText(null);
         whoWon = (TextView) findViewById(R.id.whoWon_textview);
-
+        whoWon.setText(null);
 
         playerScore.setText(playerScoreInt + "");
         dealerScore.setText(dealerScoreInt + "");

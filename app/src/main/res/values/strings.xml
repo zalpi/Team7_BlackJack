@@ -4,4 +4,5 @@
     <string name="aboot_dis">ABOUT</string> <!-- canadian support confirmed -->
     <string name="more_dis">MORE</string>
     <string name="money">Money</string>
+    <string name="instruct">Welcome to Blackjack! Try to get as close to 21 as possible, but don't go over!</string>
 </resources>
