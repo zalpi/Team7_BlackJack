@@ -37,7 +37,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 /*
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {   //Issues with getting it to work. Commented out for later.
         super.onSaveInstanceState(outState);
         // Save UI state changes to the savedInstanceState.
         // This bundle will be passed to onCreate if the process is
@@ -61,6 +61,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         dealerScoreInt = savedInstanceState.getInt("dealerScoreInt");
         playerScoreInt = savedInstanceState.getInt("playerScoreInt");
         bet = savedInstanceState.getInt("bet");
+        playerMoneyInt = savedInstanceState.getInt("playerMoneyInt");
     }
 */
     @Override
