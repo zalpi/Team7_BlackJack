@@ -174,9 +174,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //TODO: A dialog box that says if won/lost/tied with an option to close said dialog.
         if(bust(playerScoreInt) && bust(dealerScoreInt)) {
             whoWon.setText(("You lost!\n" +
-                    "Hit to start a new round!!")); //Dealer wins if both bust.
-            playerMoneyInt -= bet;                  //Player loses the bet money.
+             "Hit to start a new round!!"));  //Dealer wins if both bust.
+                                            //Player loses the bet money.
+                      //Player loses the bet money.
         } else if(bust(playerScoreInt)) {
+
             whoWon.setText(("You lost!\n" +
                     "Hit to start a new round!!")); //Dealer wins if both bust.
             playerMoneyInt -= bet;                  //Player loses the bet money.
@@ -237,10 +239,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playerMoney = (TextView) findViewById(R.id.money_textview);
         betMoney = (TextView) findViewById(R.id.money_bet);
         whoWon = (TextView) findViewById(R.id.whoWon_textview);
-
-        playerScore.setText(playerScoreInt + "");
-        dealerScore.setText("score");
-        playerMoney.setText(playerMoneyInt + "");
+        whoWon.setText(null);
 
         playerScore.setText(playerScoreInt + "");
         dealerScore.setText(dealerScoreInt + "");
