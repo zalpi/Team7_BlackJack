@@ -35,22 +35,34 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Deck deck;
     private int holeCard;
 
+/*
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         // Save UI state changes to the savedInstanceState.
         // This bundle will be passed to onCreate if the process is
         // killed and restarted.
-        savedInstanceState.putBoolean("playerStand", playerStand);
-        savedInstanceState.putBoolean("dealerStand", dealerStand);
-        savedInstanceState.putBoolean("justStarted", justStarted);
-        savedInstanceState.putInt("dealerScoreInt", dealerScoreInt);
-        savedInstanceState.putInt("playerScoreInt", playerScoreInt);
-        savedInstanceState.putInt("playerMoneyInt", playerMoneyInt);
-        savedInstanceState.putInt("bet", bet);
+        outState.putBoolean("playerStand", playerStand);
+        outState.putBoolean("dealerStand", dealerStand);
+        outState.putBoolean("justStarted", justStarted);
+        outState.putInt("dealerScoreInt", dealerScoreInt);
+        outState.putInt("playerScoreInt", playerScoreInt);
+        outState.putInt("playerMoneyInt", playerMoneyInt);
+        outState.putInt("bet", bet);
         //savedInstanceState.putInt("holeCard", holeCard);
     }
 
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        playerStand = savedInstanceState.getBoolean("playerStand");
+        dealerStand = savedInstanceState.getBoolean("dealerStand");
+        justStarted = savedInstanceState.getBoolean("justStarted");
+        dealerScoreInt = savedInstanceState.getInt("dealerScoreInt");
+        playerScoreInt = savedInstanceState.getInt("playerScoreInt");
+        bet = savedInstanceState.getInt("bet");
+    }
+*/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
