@@ -77,6 +77,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             //making sure scores start off at 0.
             playerScoreInt = dealerScoreInt = 0;
+            dealerCardOne.setImageResource(R.drawable.back);
+            dealerCardTwo.setImageResource(R.drawable.back);
             playerScore.setText(playerScoreInt + "");
             dealerScore.setText("score");
             playerMoney.setText(playerMoneyInt + "");
@@ -135,22 +137,28 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void whoWinsThePot() {
         //TODO: A dialog box that says if won/lost/tied with an option to close said dialog.
         if(bust(playerScoreInt) && bust(dealerScoreInt)) {
-            whoWon.setText(("You lost!"));  //Dealer wins if both bust.
+            whoWon.setText(("You lost!\n" +
+                    "Hit to start a new round!!"));  //Dealer wins if both bust.
                                             //Player loses the bet money.
         } else if(bust(playerScoreInt)) {
-            whoWon.setText(("You lost!"));  //The Dealer Wins.
+            whoWon.setText(("You lost!\n" +
+                    "Hit to start a new round!"));  //The Dealer Wins.
                                             //Player loses the bet money
         } else if (bust(dealerScoreInt)) {
-            whoWon.setText(("You won!"));   //The player wins.
+            whoWon.setText(("You won!\n" +
+                    "Hit to start a new round!"));   //The player wins.
                                             //Player gains twice the amount they bet.
         } else if (playerScoreInt == dealerScoreInt) {
-            whoWon.setText(("It's a tie!"));//It's a tie, player neither wins nor loses.
+            whoWon.setText(("It's a tie!\n" +
+                    "Hit to start a new round!"));//It's a tie, player neither wins nor loses.
                                             //Bet is returned to the player
         } else if (playerScoreInt > dealerScoreInt) {
-            whoWon.setText(("You won!"));   //Player wins.
+            whoWon.setText(("You won!\n" +
+                    "Hit to start a new round!"));   //Player wins.
                                             //Player gains twice the amount they bet.
         } else {
-            whoWon.setText(("You lost!!")); //Dealer wins. If the game is bugged, house will always win probably.
+            whoWon.setText(("You lost!!\n" +
+                    "Hit to start a new round!")); //Dealer wins. If the game is bugged, house will always win probably.
                                             // Player loses the bet money
         }
         //Add a toast telling the player that pressing "Hit" again will start a new game now.
@@ -182,7 +190,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         //setting money to defaulted 200, max should be about 9999 maybe?
         playerMoneyInt = 200;
-        playerMoney.setText(playerMoney + "");
+        playerMoney.setText(playerMoneyInt + "");
     }
 
     private class Deck {
