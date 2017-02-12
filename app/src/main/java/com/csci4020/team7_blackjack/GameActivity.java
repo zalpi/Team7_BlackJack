@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int dealerScoreInt;
     private int playerMoneyInt;
     private int bet;
-    private TextView playerScore, playerMoney, dealerScore, betMoney;
+    private TextView playerScore, playerMoney, dealerScore, betMoney, whoWon;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
     private boolean playerStand = false, dealerStand = false, justStarted = true;
@@ -168,7 +168,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             whoWon.setText(("You lost!\n" +
                     "Hit to start a new round!!"));  //Dealer wins if both bust.
                                             //Player loses the bet money.
-        } else if(bust(playerScoreInt)) {
+        } if(bust(playerScoreInt)) {
             whoWon.setText(("You lost!\n" +
                     "Hit to start a new round!"));  //The Dealer Wins.
                                             //Player loses the bet money
@@ -224,12 +224,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         dealerScore = (TextView) findViewById(R.id.score);
         playerMoney = (TextView) findViewById(R.id.money_textview);
         betMoney = (TextView) findViewById(R.id.money_bet);
+        whoWon = (TextView) findViewById(R.id.whoWon_textview);
+
         playerScore.setText(playerScoreInt + "");
         dealerScore.setText("score");
         playerMoney.setText(playerMoneyInt + "");
         whoWon.setText(null);
-        whoWon = (TextView) findViewById(R.id.whoWon_textview);
-
 
         playerScore.setText(playerScoreInt + "");
         dealerScore.setText(dealerScoreInt + "");
