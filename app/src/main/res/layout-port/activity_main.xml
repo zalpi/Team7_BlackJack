@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/green">
+    android:background="@color/green">
 
     <TextView
         android:layout_width="match_parent"
@@ -44,7 +44,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp"
         android:id="@+id/copyright"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textColor="@color/white" />
 
     <ImageView
         android:layout_width="wrap_content"

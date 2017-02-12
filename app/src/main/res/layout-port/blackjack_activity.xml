@@ -37,7 +37,9 @@
         android:layout_toRightOf="@+id/dealer_card2"
         android:layout_toEndOf="@+id/dealer_card2"
         android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp" />
+        android:layout_marginStart="16dp"
+        android:textColor="@android:color/black" />
+
 
     <TextView
         android:text="score"
@@ -46,19 +48,8 @@
         android:id="@+id/score"
         android:layout_alignBottom="@+id/dealer_card1"
         android:layout_alignRight="@+id/dealer"
-        android:layout_alignEnd="@+id/dealer" />
-
-    <Button
-        android:text="hit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:id="@+id/hit_button"
-        android:layout_below="@+id/dealer_card2"
-        android:layout_alignRight="@+id/player_card1"
-        android:layout_alignEnd="@+id/player_card1"
-        android:layout_alignLeft="@+id/player_card1"
-        android:layout_alignStart="@+id/player_card1" />
+        android:layout_alignEnd="@+id/dealer"
+        android:textColor="@color/white" />
 
     <ImageView
         android:layout_width="100dp"
@@ -80,7 +71,8 @@
         android:layout_marginBottom="15dp"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/dealer_card1"
-        android:layout_toStartOf="@+id/dealer_card1" />
+        android:layout_toStartOf="@+id/dealer_card1"
+        android:textColor="@color/white" />
 
     <TextView
         android:text="Player"
@@ -94,7 +86,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/black" />
 
     <ImageView
         android:layout_width="100dp"
@@ -109,18 +102,6 @@
         android:layout_marginLeft="9dp"
         android:layout_marginStart="9dp" />
 
-    <TextView
-        android:text="@string/money"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/money_textview"
-        android:layout_alignBaseline="@+id/hit_button"
-        android:layout_alignBottom="@+id/hit_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp" />
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -131,13 +112,65 @@
         android:layout_toLeftOf="@+id/player_card2"
         android:layout_toStartOf="@+id/player_card2" />
 
-    <TextView
+    <Button
+        android:text="hit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/player_card1"
-        android:layout_toRightOf="@+id/player_card1"
-        android:layout_toEndOf="@+id/player_card1"
-        android:layout_marginBottom="12dp"
-        android:id="@+id/whoWon_textview" />
+        android:layout_marginTop="55dp"
+        android:id="@+id/hit_button"
+        android:layout_below="@+id/dealer_card2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Money available:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/moneyavail_tv"
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/black"
+        android:layout_alignBaseline="@+id/hit_button"
+        android:layout_alignBottom="@+id/hit_button"
+        android:layout_alignRight="@+id/dealer_card2"
+        android:layout_alignEnd="@+id/dealer_card2"
+        android:layout_marginRight="19dp"
+        android:layout_marginEnd="19dp" />
+
+    <TextView
+        android:text="@string/money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/money_textview"
+        android:layout_alignBaseline="@+id/moneyavail_tv"
+        android:layout_alignBottom="@+id/moneyavail_tv"
+        android:layout_toRightOf="@+id/dealer_card2"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:text="Amount to bet:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bet_money"
+        android:textColor="@android:color/black"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/hit_button"
+        android:layout_alignLeft="@+id/moneyavail_tv"
+        android:layout_alignStart="@+id/moneyavail_tv"
+        android:layout_alignRight="@+id/moneyavail_tv"
+        android:layout_alignEnd="@+id/moneyavail_tv" />
+
+    <EditText
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/money"
+        android:text="cash"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_below="@+id/money_textview"
+        android:layout_alignLeft="@+id/money_textview"
+        android:layout_alignStart="@+id/money_textview" />
 
 </RelativeLayout>
