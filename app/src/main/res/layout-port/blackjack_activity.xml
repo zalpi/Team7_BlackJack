@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/green">
 
     <Button
         android:text="stand"
@@ -48,7 +49,7 @@
         android:layout_alignBottom="@+id/dealer_card1"
         android:layout_alignRight="@+id/dealer"
         android:layout_alignEnd="@+id/dealer"
-        android:textColor="@color/red" />
+        android:textColor="@color/white" />
 
     <ImageView
         android:layout_width="100dp"
@@ -71,7 +72,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/dealer_card1"
         android:layout_toStartOf="@+id/dealer_card1"
-        android:textColor="@color/red" />
+        android:textColor="@color/white" />
 
     <TextView
         android:text="Player"
@@ -143,7 +144,7 @@
         android:layout_alignBaseline="@+id/moneyavail_tv"
         android:layout_alignBottom="@+id/moneyavail_tv"
         android:layout_toRightOf="@+id/dealer_card2"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="16sp" />
 
     <TextView
@@ -166,7 +167,7 @@
         android:ems="10"
         android:id="@+id/money"
         android:text="cash"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:layout_below="@+id/money_textview"
         android:layout_alignLeft="@+id/money_textview"
