@@ -25,6 +25,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int playerScoreInt; //anything over 21 will be considered a bust
     private int dealerScoreInt;
     private int playerMoneyInt;
+    private int playerBet;
     private TextView playerScore, playerMoney, dealerScore, whoWon;
     private ImageView dealerCardOne, dealerCardTwo;
     private ImageView playerCardOne, playerCardTwo;
@@ -80,6 +81,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             dealerScore.setText("score");
             playerMoney.setText(playerMoneyInt + "");
             playerStand = false;
+            whoWon.setText(null);
         }
     }
 
@@ -133,23 +135,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void whoWinsThePot() {
         //TODO: A dialog box that says if won/lost/tied with an option to close said dialog.
         if(bust(playerScoreInt) && bust(dealerScoreInt)) {
-            //The dealer wins if they both busted.
-            //Player loses the bet money
+            whoWon.setText(("You lost!"));  //Dealer wins if both bust.
+                                            //Player loses the bet money.
         } else if(bust(playerScoreInt)) {
-            //The Dealer Wins.
-            //Player loses the bet money
+            whoWon.setText(("You lost!"));  //The Dealer Wins.
+                                            //Player loses the bet money
         } else if (bust(dealerScoreInt)) {
-            //The player wins.
-            //Player gains twice the amount they bet.
+            whoWon.setText(("You won!"));   //The player wins.
+                                            //Player gains twice the amount they bet.
         } else if (playerScoreInt == dealerScoreInt) {
-            //It's a tie, player neither wins nor loses.
-            //Bet is returned to the player
+            whoWon.setText(("It's a tie!"));//It's a tie, player neither wins nor loses.
+                                            //Bet is returned to the player
         } else if (playerScoreInt > dealerScoreInt) {
-            //Player wins.
-            //Player gains twice the amount they bet.
+            whoWon.setText(("You won!"));   //Player wins.
+                                            //Player gains twice the amount they bet.
         } else {
-            //Dealer wins. If the game is bugged, house will always win probably.
-            //Player loses the bet money
+            whoWon.setText(("You lost!!")); //Dealer wins. If the game is bugged, house will always win probably.
+                                            // Player loses the bet money
         }
         //Add a toast telling the player that pressing "Hit" again will start a new game now.
         //Maybe having the bet be able to be changed here?
