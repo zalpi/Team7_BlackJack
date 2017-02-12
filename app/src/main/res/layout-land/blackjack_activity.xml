@@ -184,8 +184,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/score"
+        android:id="@+id/whoWon_textview"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/whoWon_textview" />
+        android:text="Welcome to Blackjack! Try to get as close to 21 as possible, but don't go over!" />
 
 </RelativeLayout>

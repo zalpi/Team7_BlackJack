@@ -173,4 +173,13 @@
         android:layout_alignLeft="@+id/money_textview"
         android:layout_alignStart="@+id/money_textview" />
 
+    <TextView
+        android:text="Welcome to Blackjack! Try to get as close to 21 as possible, but don't go over!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/whoWon_textview"
+        android:layout_above="@+id/player_card1"
+        android:layout_toRightOf="@+id/bet_money"
+        android:layout_toEndOf="@+id/bet_money" />
+
 </RelativeLayout>
