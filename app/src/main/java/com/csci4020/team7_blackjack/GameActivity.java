@@ -76,7 +76,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             deck.resetDeck();
 
-            TextViews();
+            //TextViews();
+            //making sure scores start off at 0.
+            playerScoreInt = dealerScoreInt = 0;
+            playerScore.setText(playerScoreInt + "");
+            dealerScore.setText("score");
+            playerMoney.setText(playerMoneyInt + "");
+            playerMoney.setText("$ " + playerMoneyInt);
+            betMoney.setText("$ " + bet);
+            whoWon.setText(null);
 
             dealerCardOne.setImageResource(R.drawable.back);
             dealerCardTwo.setImageResource(R.drawable.back);
@@ -196,11 +204,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         dealerScore = (TextView) findViewById(R.id.score);
         playerMoney = (TextView) findViewById(R.id.money_textview);
         betMoney = (TextView) findViewById(R.id.money_bet);
+        whoWon = (TextView) findViewById(R.id.whoWon_textview);
+
         playerScore.setText(playerScoreInt + "");
         dealerScore.setText("score");
         playerMoney.setText(playerMoneyInt + "");
-        whoWon = (TextView) findViewById(R.id.whoWon_textview);
-        whoWon.setText(null);
 
         playerScore.setText(playerScoreInt + "");
         dealerScore.setText(dealerScoreInt + "");
@@ -254,9 +262,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(GameActivity.this, "You don't have enough money! Setting money back to $500",
                         Toast.LENGTH_LONG).show();
                 playerMoneyInt = 500;
-            }
-            else {
-               playerMoneyInt -= bet;
             }
         }
 
