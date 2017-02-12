@@ -182,6 +182,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         //setting money to defaulted 200, max should be about 9999 maybe?
         playerMoneyInt = 200;
+        playerMoney.setText(playerMoney + "");
     }
 
     private class Deck {
